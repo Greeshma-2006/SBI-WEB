@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SBI Fraud Detection</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <!-- Header section with SBI logo and navbar -->
+    <header>
+        <div class="logo">
+            <img srC="SBIL.png" alt=""> <!-- SBI logo -->
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" id="homeLink">Home</a></li>
+                <li><a href="#" id="aboutLink">About</a></li>
+                <li><a href="#" id="contactLink">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <section id="homeSection" class="active-section">
+            <h2>Submit Your Claim for Fraud Detection</h2>
+            <form id="fraudForm">
+                <!-- Client Name Field -->
+                <label for="clientName">Client Name:</label>
+                <input type="text" id="clientName" name="clientName" placeholder="Enter client name" required>
+
+                <!-- Claim Amount Field -->
+                <label for="amount">Claim Amount (₹):</label>
+                <input type="number" id="amount" name="amount" required>
+
+                <!-- Claim Reason Field -->
+                <label for="claim">Claim Reason:</label>
+                <input type="text" id="claim" name="claim" placeholder="e.g., accident, fire, theft" required>
+
+                <!-- Card Details Field -->
+                <label for="cardDetails">Card Details:</label>
+                <input type="text" id="cardDetails" name="cardDetails" placeholder="Enter card details" required>
+
+                <button type="submit">Submit</button>
+            </form>
+            <div id="result"></div>
+        </section>
+
+        <section id="aboutSection" class="hidden-section">
+            <h2>About SBI Fraud Detection System</h2>
+            <p>This fraud detection system is developed by an individual for the State Bank of India (SBI). The primary objective is to ensure secure and reliable banking services by identifying fraudulent activities effectively and promptly.</p>
+        </section>
+
+        <section id="contactSection" class="hidden-section">
+            <h2>Contact Details</h2>
+            <p>You can contact State Bank of India (SBI) customer care by email at <a href="mailto:customercare@sbi.co.in">customercare@sbi.co.in</a>. You can also contact SBI customer care by:</p>
+            <ul>
+                <li><b>Phone:</b> Call 1800 11 1109 (toll free), 94491 12211 (toll free), or 080 - 2659 9990 (toll)</li>
+                <li><b>SMS:</b> Text <i>UNHAPPY</i> to 8008 20 20 20</li>
+                <li><b>Write:</b> Send a letter to the Customer Service Department, State Bank of India, State Bank Bhavan, 16th Floor, Madam Cama Road, Mumbai 400 021</li>
+            </ul>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 SBI Fraud Detection. All rights reserved.</p>
+    </footer>
+</body>
+</html>
