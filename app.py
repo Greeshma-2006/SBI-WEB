@@ -9,7 +9,9 @@ model = joblib.load('fraud_detection_model.pkl')
 
 # Create a Flask App
 app = Flask(__name__)
-CORS(app)  # Enable CORS for cross-origin requests
+
+# Enable CORS for cross-origin requests (frontend-backend communication)
+CORS(app, resources={r"/*": {"origins": "*"}})  # Allow requests from all origins
 
 @app.route('/')
 def home():
@@ -55,6 +57,7 @@ def predict():
         })
 
     except Exception as e:
+        # Handle exceptions and return a 500 status code
         return jsonify({'error': str(e)}), 500
 
 # Run the Flask App

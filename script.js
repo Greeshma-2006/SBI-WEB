@@ -2,6 +2,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("fraudForm");
     const resultDiv = document.getElementById("result");
 
+    // Set the API URL to the live backend URL
+    const apiUrl = "https://sbi-web-2.onrender.com/predict";
+
     form.addEventListener("submit", (event) => {
         event.preventDefault(); // Prevent page reload
 
@@ -11,8 +14,14 @@ document.addEventListener("DOMContentLoaded", () => {
         const claimReason = document.getElementById("claim").value.trim();
         const cardDetails = document.getElementById("cardDetails").value.trim();
 
+        // Validate input
+        if (!clientName || !claimAmount || !claimReason || !cardDetails) {
+            resultDiv.innerHTML = `<p style="color: red;">All fields are required!</p>`;
+            return;
+        }
+
         // Send POST request to Flask API
-        fetch("http://127.0.0.1:5000/predict", {
+        fetch(apiUrl, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -22,16 +31,21 @@ document.addEventListener("DOMContentLoaded", () => {
                 card_details: cardDetails
             }),
         })
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
         .then(data => {
             if (data.fraud) {
-                resultDiv.innerHTML = `<p>Fraud Detected 🚨 for ${clientName}</p>`;
+                resultDiv.innerHTML = `<p style="color: red;">Fraud Detected 🚨 for ${clientName}</p>`;
             } else {
-                resultDiv.innerHTML = `<p>No Fraud Detected ✅ for ${clientName}</p>`;
+                resultDiv.innerHTML = `<p style="color: green;">No Fraud Detected ✅ for ${clientName}</p>`;
             }
         })
         .catch(error => {
-            resultDiv.innerHTML = `<p>Error: ${error}</p>`;
+            resultDiv.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
         });
     });
 });
